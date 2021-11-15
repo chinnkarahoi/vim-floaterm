@@ -119,6 +119,7 @@ function! s:open_float(bufnr, config) abort
         \ 'width': a:config.width - 2,
         \ 'height': a:config.height - 2,
         \ 'style':'minimal',
+        \ 'border': 'rounded',
         \ }
   let winid = nvim_open_win(a:bufnr, v:true, options)
   call s:init_win(winid, v:false)
@@ -134,10 +135,6 @@ function! s:open_float(bufnr, config) abort
         \ 'focusable': v:false,
         \ 'style':'minimal',
         \ }
-  let bd_bufnr = floaterm#buffer#create_border_buf(a:config)
-  let bd_winid = nvim_open_win(bd_bufnr, v:false, bd_options)
-  call s:init_win(bd_winid, v:true)
-  call floaterm#config#set(a:bufnr, 'borderwinid', bd_winid)
   return winid
 endfunction
 
